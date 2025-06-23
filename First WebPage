@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Comparison: Fivetran vs. CData</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony Neutrals -->
+    <!-- Application Structure Plan: A top-down narrative SPA. It starts with a hero section stating the conclusion. A tabbed interactive section allows users to compare specific features. This is followed by two deep-dive sections: an interactive cost comparison chart and a visual workflow diagram for maintenance. This structure guides the user from a high-level claim to detailed, interactive proof points, making the argument more persuasive and easier to digest than a linear document. -->
+    <!-- Visualization & Content Choices: 
+        1. Feature Comparison: Report Info -> Comparison Table. Goal -> Compare. Viz/Method -> Interactive Cards with Tabs. Interaction -> Click tabs to update content. Justification -> Breaks down complex info into focused, digestible chunks. Library -> Vanilla JS, Tailwind.
+        2. Cost Analysis: Report Info -> Cost-Effectiveness text. Goal -> Compare/Show Change. Viz/Method -> Interactive Bar Chart. Interaction -> Slider updates chart data to show cost scaling. Justification -> Visually proves the cost-effectiveness claim in a way text cannot. Library -> Chart.js.
+        3. Maintenance Analysis: Report Info -> Ease of Maintenance text. Goal -> Organize/Compare Processes. Viz/Method -> HTML/CSS process flow diagram. Interaction -> On-scroll animations reveal steps. Justification -> Visually contrasts the complexity of each platform's workflow. Library -> Vanilla JS, Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .tab-active {
+            border-color: #2563eb;
+            color: #2563eb;
+            background-color: #eff6ff;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .process-step {
+            transition: all 0.5s ease-in-out;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        .process-step.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        
+        <header class="text-center py-12 md:py-16">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">The Clear Choice for Modern Data Integration</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">An interactive report comparing Fivetran and CData on the metrics that matter: cost-effectiveness and ease of maintenance.</p>
+            <a href="#comparison" class="mt-8 inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">Explore the Comparison</a>
+        </header>
+
+        <main>
+            <section id="comparison" class="py-12 md:py-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Feature-by-Feature Breakdown</h2>
+                    <p class="mt-3 text-slate-600 max-w-2xl mx-auto">Click through the tabs to see how Fivetran and CData stack up in key areas. We've designed this section to give you a clear, side-by-side view of each platform's strengths and weaknesses.</p>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
+                    <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8" id="tabs-container">
+                        <button data-tab="cost" class="tab-btn tab-active font-medium py-2 px-4 rounded-full border-2 border-transparent transition">💰 Pricing Model</button>
+                        <button data-tab="maintenance" class="tab-btn font-medium py-2 px-4 rounded-full border-2 border-transparent transition">⚙️ Maintenance</button>
+                        <button data-tab="ease" class="tab-btn font-medium py-2 px-4 rounded-full border-2 border-transparent transition">✅ Ease of Use</button>
+                        <button data-tab="connectors" class="tab-btn font-medium py-2 px-4 rounded-full border-2 border-transparent transition">🔌 Connectors</button>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="p-6 bg-slate-50 rounded-xl border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-3 text-blue-600">Fivetran</h3>
+                            <div id="fivetran-content" class="fade-in"></div>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-xl border border-slate-200">
+                            <h3 class="text-2xl font-bold mb-3 text-slate-700">CData</h3>
+                            <div id="cdata-content" class="fade-in"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="cost-analysis" class="py-12 md:py-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Interactive Cost Analysis</h2>
+                    <p class="mt-3 text-slate-600 max-w-3xl mx-auto">Fivetran's consumption-based pricing can be more predictable and scalable than CData's per-connector model. Use the slider below to simulate your data volume and see the potential cost difference unfold. This visualization models Fivetran's Monthly Active Rows (MAR) against a fixed annual cost for CData connectors.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
+                    <div class="chart-container">
+                        <canvas id="costChart"></canvas>
+                    </div>
+                    <div class="mt-8 px-4">
+                        <label for="mar-slider" class="block text-center font-medium text-slate-700 mb-2">Adjust Monthly Active Rows (MAR)</label>
+                        <input type="range" id="mar-slider" min="1" max="100" value="20" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-sm text-slate-500 mt-2">
+                            <span>1 Million</span>
+                            <span>50 Million</span>
+                            <span>100 Million</span>
+                        </div>
+                        <p class="text-center mt-4 text-lg font-semibold">Simulated MAR: <span id="mar-value" class="text-blue-600">20 Million</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="maintenance-workflow" class="py-12 md:py-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">The Maintenance Difference: A Visual Guide</h2>
+                    <p class="mt-3 text-slate-600 max-w-3xl mx-auto">A low-maintenance solution saves countless engineering hours. This diagram visualizes the typical data pipeline workflow for each platform. Fivetran’s automation eliminates many manual steps, reducing complexity and freeing up your team to focus on analytics, not infrastructure.</p>
+                </div>
+                 <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-blue-600">Fivetran: The Automated Workflow</h3>
+                        <div class="space-y-4">
+                            <div class="process-step flex items-center gap-4">
+                                <div class="flex-shrink-0 bg-blue-100 text-blue-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">1</div>
+                                <p class="font-medium">Connect to Source</p>
+                            </div>
+                            <div class="pl-5"><div class="h-8 w-px bg-slate-200 ml-4"></div></div>
+                            <div class="process-step flex items-center gap-4">
+                                <div class="flex-shrink-0 bg-blue-100 text-blue-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">2</div>
+                                <p class="font-medium">Fivetran Automates Sync & Schema Migration</p>
+                            </div>
+                            <div class="pl-5"><div class="h-8 w-px bg-slate-200 ml-4"></div></div>
+                            <div class="process-step flex items-center gap-4">
+                                <div class="flex-shrink-0 bg-green-100 text-green-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">✓</div>
+                                <p class="font-medium">Data is Ready to Query</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-slate-700">CData: The Manual Workflow</h3>
+                        <div class="space-y-4">
+                            <div class="process-step flex items-center gap-4">
+                               <div class="flex-shrink-0 bg-slate-200 text-slate-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">1</div>
+                                <p class="font-medium">Connect to Source</p>
+                            </div>
+                             <div class="pl-5"><div class="h-8 w-px bg-slate-200 ml-4"></div></div>
+                             <div class="process-step flex items-center gap-4">
+                               <div class="flex-shrink-0 bg-slate-200 text-slate-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">2</div>
+                                <p class="font-medium">Configure Job & Mappings</p>
+                            </div>
+                            <div class="pl-5"><div class="h-8 w-px bg-slate-200 ml-4"></div></div>
+                             <div class="process-step flex items-center gap-4">
+                               <div class="flex-shrink-0 bg-slate-200 text-slate-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">3</div>
+                                <p class="font-medium">Manually Manage Schema Changes</p>
+                            </div>
+                             <div class="pl-5"><div class="h-8 w-px bg-slate-200 ml-4"></div></div>
+                             <div class="process-step flex items-center gap-4">
+                               <div class="flex-shrink-0 bg-slate-200 text-slate-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">4</div>
+                                <p class="font-medium">Monitor and Maintain Pipelines</p>
+                            </div>
+                            <div class="pl-5"><div class="h-8 w-px bg-slate-200 ml-4"></div></div>
+                            <div class="process-step flex items-center gap-4">
+                                <div class="flex-shrink-0 bg-orange-100 text-orange-600 rounded-full h-10 w-10 flex items-center justify-center font-bold">!</div>
+                                <p class="font-medium">Requires Ongoing Engineering Effort</p>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <section class="text-center py-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">The Strategic Choice for Modern Data Teams</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">While CData offers flexibility, its model demands more hands-on management and can lead to unpredictable costs. Fivetran provides a modern, automated, and cost-effective solution that empowers teams to focus on driving business value, not managing infrastructure.</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabsData = {
+                cost: {
+                    fivetran: `
+                        <h4 class="font-bold text-lg mb-2">Consumption-Based (MAR)</h4>
+                        <p class="text-slate-600">Pay for what you use based on Monthly Active Rows. This model scales with your business, making it ideal for companies of all sizes and those with fluctuating data volumes. It provides greater cost control and predictability.</p>`,
+                    cdata: `
+                        <h4 class="font-bold text-lg mb-2">Per-Connector / Tiered</h4>
+                        <p class="text-slate-600">Typically priced per connector with tiers based on data volume. This can lead to high fixed costs, even if connectors aren't fully utilized, and may penalize you for growing data usage.</p>`
+                },
+                maintenance: {
+                    fivetran: `
+                        <h4 class="font-bold text-lg mb-2">Very Low Effort</h4>
+                        <p class="text-slate-600">Fully managed with automated pipelines and schema migrations. Fivetran adapts to source changes automatically, providing a true "set-it-and-forget-it" experience that requires minimal engineering oversight.</p>`,
+                    cdata: `
+                        <h4 class="font-bold text-lg mb-2">Moderate Effort</h4>
+                        <p class="text-slate-600">Requires hands-on management and customization. Schema changes and pipeline errors often need manual intervention, consuming valuable engineering time and resources.</p>`
+                },
+                ease: {
+                    fivetran: `
+                        <h4 class="font-bold text-lg mb-2">High - Plug-and-Play</h4>
+                        <p class="text-slate-600">Features a simple setup, an intuitive user interface, and pre-built transformations. New pipelines can be configured in minutes without deep technical expertise. It's designed for analysts and engineers alike.</p>`,
+                    cdata: `
+                        <h4 class="font-bold text-lg mb-2">Moderate - Requires Expertise</h4>
+                        <p class="text-slate-600">Has a steeper learning curve and often requires SQL knowledge for complex tasks and transformations. The setup can be more involved, demanding more from the implementation team.</p>`
+                },
+                connectors: {
+                    fivetran: `
+                        <h4 class="font-bold text-lg mb-2">150+ Fully Managed Connectors</h4>
+                        <p class="text-slate-600">Focuses on quality and reliability. Connectors are pre-built, standardized, and fully managed by Fivetran, ensuring high uptime and automatic adaptation to API changes.</p>`,
+                    cdata: `
+                        <h4 class="font-bold text-lg mb-2">250+ Driver-Based Connectors</h4>
+                        <p class="text-slate-600">Offers a wider range of connectors, but many are driver-based, which can require more manual configuration, setup, and maintenance compared to fully managed alternatives.</p>`
+                }
+            };
+
+            const fivetranContent = document.getElementById('fivetran-content');
+            const cdataContent = document.getElementById('cdata-content');
+            const tabsContainer = document.getElementById('tabs-container');
+
+            function updateTabs(activeTab) {
+                fivetranContent.innerHTML = tabsData[activeTab].fivetran;
+                cdataContent.innerHTML = tabsData[activeTab].cdata;
+                fivetranContent.classList.remove('fade-in');
+                cdataContent.classList.remove('fade-in');
+                void fivetranContent.offsetWidth; 
+                void cdataContent.offsetWidth;
+                fivetranContent.classList.add('fade-in');
+                cdataContent.classList.add('fade-in');
+
+                tabsContainer.querySelectorAll('.tab-btn').forEach(btn => {
+                    if (btn.dataset.tab === activeTab) {
+                        btn.classList.add('tab-active');
+                    } else {
+                        btn.classList.remove('tab-active');
+                    }
+                });
+            }
+
+            tabsContainer.addEventListener('click', (e) => {
+                if (e.target.matches('.tab-btn')) {
+                    updateTabs(e.target.dataset.tab);
+                }
+            });
+
+            updateTabs('cost');
+
+            const ctx = document.getElementById('costChart').getContext('2d');
+            let costChart;
+
+            const baseCDataCost = 40000; 
+
+            function calculateFivetranCost(mar) {
+                return 15000 + (mar * 300);
+            }
+            
+            function renderChart(mar) {
+                const fivetranCost = calculateFivetranCost(mar);
+                const labels = ['Fivetran', 'CData'];
+                const data = [fivetranCost, baseCDataCost];
+
+                if (costChart) {
+                    costChart.data.datasets[0].data = data;
+                    costChart.update();
+                } else {
+                    costChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Estimated Annual Cost',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(59, 130, 246, 0.7)',
+                                    'rgba(100, 116, 139, 0.7)'
+                                ],
+                                borderColor: [
+                                    'rgba(59, 130, 246, 1)',
+                                    'rgba(100, 116, 139, 1)'
+                                ],
+                                borderWidth: 2,
+                                borderRadius: 8,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: function(value) {
+                                            return '$' + (value / 1000) + 'k';
+                                        }
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            let label = context.dataset.label || '';
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            if (context.parsed.y !== null) {
+                                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                            }
+                                            return label;
+                                        }
+                                    }
+                                }
+                            },
+                            indexAxis: 'x',
+                        }
+                    });
+                }
+            }
+            
+            const slider = document.getElementById('mar-slider');
+            const marValueDisplay = document.getElementById('mar-value');
+            
+            slider.addEventListener('input', (e) => {
+                const mar = parseInt(e.target.value);
+                marValueDisplay.textContent = `${mar} Million`;
+                renderChart(mar);
+            });
+
+            renderChart(parseInt(slider.value));
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const steps = entry.target.querySelectorAll('.process-step');
+                        steps.forEach((step, index) => {
+                            setTimeout(() => {
+                                step.classList.add('visible');
+                            }, index * 200);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('#maintenance-workflow .rounded-2xl').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
