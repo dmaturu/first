@@ -1,466 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeSpace Ideas Program</title>
-    <style>
-        /* --- General Styling & Layout --- */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        h1 {
-            color: #005a9c;
-            font-size: 2.5em;
-            margin-bottom: 0.2em;
-        }
-        .taglines {
-            font-style: italic;
-            color: #666;
-            font-size: 1.1em;
-        }
-        nav {
-            background-color: #333;
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #89cff0;
-        }
-        section {
-            background-color: #ffffff;
-            margin-top: 20px;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        h2 {
-            color: #005a9c;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 10px;
-            margin-top: 0;
-            font-size: 2em;
-        }
-        h3 {
-            color: #0073b1;
-            font-size: 1.5em;
-            margin-top: 30px;
-        }
-        ul, ol {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        blockquote {
-            border-left: 4px solid #0073b1;
-            padding-left: 20px;
-            margin: 20px 0;
-            font-style: italic;
-            color: #555;
-        }
-        /* --- Specific Component Styling --- */
-        .intake-form-section strong, .business-reqs-section strong {
-            display: block;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .intake-form-section span {
-            color: #666;
-            font-size: 0.9em;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            color: #777;
-            font-size: 0.9em;
-        }
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            nav {
-                position: static;
-            }
-            nav a {
-                display: block;
-                padding: 10px 0;
-                margin: 0;
-                border-bottom: 1px solid #444;
-            }
-            nav a:last-child {
-                border-bottom: none;
-            }
-            h1 { font-size: 2em; }
-            h2 { font-size: 1.75em; }
-            h3 { font-size: 1.25em; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifeSpace Ideas Program</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
-<body>
-
-    <header>
-        <h1>LifeSpace Ideas Program</h1>
-        <div class="taglines">
-            <p>Our Space. Your ideas.</p>
-        </div>
-    </header>
-
-    <nav>
-        <a href="#purpose">Purpose</a>
-        <a href="#objectives">Objectives</a>
-        <a href="#framework">Framework</a>
-        <a href="#intake-form">Intake Form</a>
-        <a href="#requirements">Requirements</a>
-        <a href="#activation">Activation Plan</a>
-    </nav>
-
-    <div class="container">
-
-        <section id="purpose">
-            <h2>Purpose</h2>
-            <blockquote>
-                The Ideas Program brings LifeSpace’s innovation mission to life by empowering every team member to drive micro-innovations; new, different, and better ways of working that benefit both LifeSpace and the broader industry. It provides a structured platform for submitting ideas that solve problems, improve processes, and enhance the experience for both customers (residents) and team members. By encouraging participation across all levels and locations, the program fosters ownership, recognition, cross-functional collaboration, and a culture of continuous learning.
-            </blockquote>
-            <p>
-                This initiative embeds a growth mindset into our daily routines, turning everyday observations into practical solutions that improve engagement, capture institutional knowledge, and support our strategic goals. Whether by enhancing the team member experience, driving revenue, or reducing expenses, the Ideas Program helps fuel micro-innovation that contributes to margin expansion and long-term sustainability. Recognizing contributors and celebrating wins builds excitement, energy, and shared accountability, making innovation part of LifeSpace’s DNA.
-            </p>
-        </section>
-
-        <section id="objectives">
-            <h2>Objectives</h2>
-            <ol>
-                <li>Ensure the Ideas Program is active, responsive, and aligned with evolving business needs.</li>
-                <li>Create a consistent, transparent, and efficient process for idea submission, review, and selection.</li>
-                <li>Establish clear metrics and success measures to track program effectiveness.</li>
-                <li>Establish a clear, inclusive evaluation structure that empowers community-level engagement while ensuring centralized oversight, cross-functional review, and alignment with strategic priorities.</li>
-                <li>Embed recognition at every stage to motivate participation and celebrate success.</li>
-            </ol>
-        </section>
-
-        <section id="framework">
-            <h2>Operational Framework</h2>
-            
-            <h3>1. Program Timeline & Submission Process</h3>
-            <ul>
-                <li><strong>Continuous Submission:</strong> Team members can submit ideas year-round.</li>
-                <li><strong>Themed Campaigns (Optional):</strong> Focus on specific topics monthly or quarterly to address priority areas or manage volume.</li>
-                <li><strong>One Month and Second Month Post-Launch:</strong> Share an initial summary of ideas submitted and key themes to build momentum.</li>
-                <li><strong>Quarterly Evaluation Windows:</strong> Conduct a formal review and prioritization cycle every quarter.</li>
-                <li><strong>Quarterly Reflections:</strong> Publish a summary including number of ideas, key themes, success stories, and highlight recognized team members.</li>
-                <li><strong>Annual Celebration:</strong> Host a year-end event spotlighting major impacts, success stories, areas for improvement. Celebrating top contributors for visibility and recognition.</li>
-            </ul>
-
-            <h3>2. Idea Evaluation & Implementation Pathways</h3>
-            <ul>
-                <li><strong>Quarterly Review Panels:</strong> Group and assess ideas each quarter for impact, feasibility, and alignment with strategic goals and moments of truth. (Note: We do have methods to Fast-Track).</li>
-                <li><strong>Empowerment Path (“Just Do It”):</strong> For simple, low-risk ideas that require minimal resources, encourage team members to act after aligning with their manager, no formal review needed. This approach supports a culture of ownership, responsiveness, and continuous improvement.</li>
-                <li><strong>Fast-Track Path:</strong> Expedite high-impact or time-sensitive ideas for immediate review or implementation.</li>
-                <li><strong>Evaluation Criteria:</strong> Standardize assessment using micro-innovation, cost-effectiveness, scalability, and alignment with company values and strategic pillars.</li>
-                <li><strong>Tracking & Sharing:</strong> Track all completed ideas (including “just do it” wins), record completion dates, and evaluate for broader rollout.</li>
-                <li><strong>Conflict & Sensitive Ideas:</strong> Define a process for handling duplicate/conflicting ideas. Complaints or whistleblowing will be forwarded and flow through appropriate channels in HR and legal.</li>
-            </ul>
-
-            <h3>3. Metrics & Success Measures</h3>
-            <ul>
-                <li>Number of ideas submitted, implemented, and scaled.</li>
-                <li>Participation rates across departments, teams, and sites.</li>
-                <li>Time from idea submission to decision and implementation.</li>
-                <li>Team member and resident engagement, measured through existing pre/post surveys or feedback.</li>
-                <li>Visualization of the idea pipeline (intake → triage → review → implement → recognition → scale/share).</li>
-            </ul>
-
-            <h3>4. Evaluation & Governance Structure</h3>
-            <ul>
-                <li><strong>Process:</strong> Centralized (Experience team) yet execution is decentralized.</li>
-                <li><strong>CX Champions:</strong> Initial review of all ideas at the community level.</li>
-                <li><strong>Evaluation Committee:</strong> Cross-functional team (operations, HR, CX, strategy) filters and prioritizes ideas.</li>
-                <li><strong>Rotating Committee Members:</strong> Refresh perspectives by rotating annually or semi-annually.</li>
-                <li><strong>Subject Matter Experts:</strong> Consult SMEs as needed for technical or domain-specific input.</li>
-                <li><strong>Team Member Voting (Phase II):</strong> Consider team member input through voting for certain categories or finalist ideas.</li>
-                <li><strong>Customer Validation:</strong> For selected high-impact ideas, gather customer (resident) feedback before implementation.</li>
-            </ul>
-            
-            <h3>5. Recognition & Rewards</h3>
-            <ul>
-                <li>Recognize participation, implementation, and measurable impact.</li>
-                <li>Rewards may include public shout-outs, leverage Job Pixel, small prizes, and professional development opportunities.</li>
-                <li>Celebrate achievements at individual, team, and community levels.</li>
-            </ul>
-        </section>
-
-    <section id="intake-form" class="intake-form-section">
-    <h2>Submit Your Idea</h2>
-    <p>Use the form below to submit your micro-innovation. We appreciate every submission!</p>
-    
-    <form action="https://formspree.io/f/xyzjqewz" method="POST">
-        <h3>Basic Information</h3>
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="submitterName">Your Name</label>
-                <input type="text" id="submitterName" name="submitterName" required>
-            </div>
-            <div class="form-group">
-                <label for="submitterEmail">Your Email</label>
-                <input type="email" id="submitterEmail" name="email" required>
-            </div>
-            <div class="form-group full-width">
-                <label for="ideaTitle">Title of the Idea (10-word limit)</label>
-                <input type="text" id="ideaTitle" name="ideaTitle" maxlength="60" required>
-            </div>
-            <div class="form-group full-width">
-                <label for="ideaDescription">Description of the Idea (250-word limit)</label>
-                <textarea id="ideaDescription" name="ideaDescription" rows="5" maxlength="1500" required></textarea>
-            </div>
-            <div class="form-group full-width">
-                <label for="problem">Problem or Opportunity Addressed</label>
-                <input type="text" id="problem" name="problem" required>
-            </div>
-            <div class="form-group">
-                <label for="whoBenefits">Who Benefits from This Idea?</label>
-                <select id="whoBenefits" name="whoBenefits" required>
-                    <option value="">--Please choose an option--</option>
-                    <option value="Residents">Residents</option>
-                    <option value="Prospects">Prospects</option>
-                    <option value="Team Members">Team Members</option>
-                    <option value="Multiple Groups">Multiple Groups</option>
-                    <option value="Organization-wide">Organization-wide</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-             <div class="form-group">
-                <label for="ideaSource">How did you identify this idea?</label>
-                <select id="ideaSource" name="ideaSource" required>
-                    <option value="">--Please choose an option--</option>
-                    <option value="Personal Observation">Personal Observation</option>
-                    <option value="Customer Feedback">Customer Feedback</option>
-                    <option value="Team Suggestion">Team Suggestion</option>
-                    <option value="Data/Metrics">Data/Metrics</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-        </div>
-
-        <h3>Impact & Feasibility</h3>
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="expectedImpact">Expected Impact</label>
-                <select id="expectedImpact" name="expectedImpact" required>
-                    <option value="">--Please choose an option--</option>
-                    <option value="Cost Savings">Cost Savings</option>
-                    <option value="Time Savings">Time Savings</option>
-                    <option value="Experience Improvement">Experience Improvement</option>
-                    <option value="Revenue Growth">Revenue Growth</option>
-                    <option value="Safety/Compliance">Safety/Compliance</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="effort">Estimated Effort to Implement</label>
-                <select id="effort" name="effort" required>
-                    <option value="">--Please choose an option--</option>
-                    <option value="Low (Days)">Low (Days)</option>
-                    <option value="Medium (Weeks)">Medium (Weeks)</option>
-                    <option value="High (Months)">High (Months)</option>
-                </select>
-            </div>
-            <div class="form-group full-width">
-                <label for="resourcesNeeded">Resources Needed (if known)</label>
-                <input type="text" id="resourcesNeeded" name="resourcesNeeded">
-            </div>
-        </div>
-
-        <div class="form-group full-width">
-            <button type="submit">Submit Idea</button>
-        </div>
-    </form>
-</section>
-
-<style>
-    /* ... (all your existing CSS) ... */
-
-    .intake-form-section .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-    .intake-form-section .form-group {
-        display: flex;
-        flex-direction: column;
-    }
-    .intake-form-section .form-group.full-width {
-        grid-column: 1 / -1;
-    }
-    .intake-form-section label {
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #333;
-    }
-    .intake-form-section input[type="text"],
-    .intake-form-section input[type="email"],
-    .intake-form-section select,
-    .intake-form-section textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1em;
-        font-family: inherit;
-    }
-    .intake-form-section button[type="submit"] {
-        background-color: #0073b1;
-        color: white;
-        padding: 15px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.1em;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        width: 100%;
-    }
-    .intake-form-section button[type="submit"]:hover {
-        background-color: #005a9c;
-    }
-    #formMessage {
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-    }
-    #formMessage.success {
-        background-color: #d4edda;
-        color: #155724;
-    }
-    #formMessage.error {
-        background-color: #f8d7da;
-        color: #721c24;
-    }
-
-    @media (max-width: 768px) {
-        .intake-form-section .form-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-
-        <section id="requirements" class="business-reqs-section">
-            <h2>Business Requirements</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Requirement</th>
-                        <th>Priority</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>The system shall include the defined INTAKE FORM.</td>
-                        <td>Must Have</td>
-                    </tr>
-                    <tr>
-                        <td>The business must be able to filter ideas by comments, categories, status, title, submitter, and date – within a team and across all communities.</td>
-                        <td>Must Have</td>
-                    </tr>
-                    <tr>
-                        <td>The business must be able to create ad hoc reporting for board members and other stakeholders.</td>
-                        <td>Must Have</td>
-                    </tr>
-                    <tr>
-                        <td>The system must have a flexible, user-definable workflow that allows for tailoring the end-to-end evaluation process without needing technical assistance.</td>
-                        <td>Must Have</td>
-                    </tr>
-                    <tr>
-                        <td>The review committee must be able to privately rate the initial impression of an idea on a scale (not visible to the submitter).</td>
-                        <td>Must Have (Phase II)</td>
-                    </tr>
-                    <tr>
-                        <td>The workflow shall provide feedback loops, allowing the submitter to see a status (e.g., from a dropdown) and comments from the review committee.</td>
-                        <td>Must Have</td>
-                    </tr>
-                    <tr>
-                        <td>An "Idea Board" feature should be available to share and celebrate quick wins.</td>
-                        <td>Must Have</td>
-                    </tr>
-                    <tr>
-                        <td>The system will auto-assign a unique ID to each idea for tracking and reporting purposes.</td>
-                        <td>Must Have</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        
-        <section id="activation">
-            <h2>Activation & Launch Plan</h2>
-            
-            <h3>Initial Activation (By July 31, 2025)</h3>
-            <ul>
-                <li><strong>Visible Leadership Sponsorship:</strong> Launch with an executive town hall and keep executives engaged as champions.</li>
-                <li><strong>Regular Storytelling:</strong> Share "Idea of the Month/Quarter," testimonials, and lessons learned.</li>
-                <li><strong>Feedback to All Submitters:</strong> Acknowledge all ideas with a personal note to prevent disengagement.</li>
-                <li><strong>Multi-Channel Promotion:</strong> Utilize internal newsletters, posters, emails, and team huddles.</li>
-                <li><strong>CX Champion Engagement:</strong> Empower CX Champions to promote the program at the local level.</li>
-            </ul>
-
-            <h3>Next Iteration (Phase II)</h3>
-            <ul>
-                <li><strong>Themed Campaigns:</strong> Focus on specific business challenges (e.g., "Resident Onboarding," "Reducing Waste").</li>
-                <li><strong>Community Competitions:</strong> Foster friendly contests between communities or departments.</li>
-                <li><strong>"Quick Wins" Board:</strong> Publicize all "just do it" actions to show visible, fast impact.</li>
-                <li><strong>Gamification Elements:</strong> Introduce badges, points, and leaderboards to make participation fun.</li>
-                <li><strong>Training and Enablement:</strong> Offer micro-innovation workshops to teach team members how to identify opportunities and write compelling proposals.</li>
-            </ul>
-        </section>
+<body class="bg-gray-50 text-gray-900">
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold">LifeSpace Ideas Program</h1>
+      <p class="mt-2 text-lg text-gray-600">Our Space. Your Ideas.</p>
     </div>
+  </header>
 
-    <footer>
-        <p>LifeSpace Innovation </p>
-        <p>This page outlines the proposal for the LifeSpace Ideas Program.</p>
-    </footer>
+  <main class="max-w-5xl mx-auto py-10 px-6">
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-2">Purpose</h2>
+      <p>The Ideas Program empowers every team member to drive micro-innovations — new, better ways of working that benefit LifeSpace and the broader industry. It provides a structured platform for submitting ideas to improve processes, solve problems, and enhance both resident and team member experiences.</p>
+    </section>
 
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-2">Objectives</h2>
+      <ul class="list-disc ml-6">
+        <li>Active, responsive alignment with evolving business needs</li>
+        <li>Consistent, transparent process for submission, review, and selection</li>
+        <li>Clear metrics to track effectiveness</li>
+        <li>Inclusive evaluation structure with centralized oversight</li>
+        <li>Recognition embedded at all stages</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-2">Framework</h2>
+      <h3 class="text-xl font-semibold mt-4">Submission Process</h3>
+      <ul class="list-disc ml-6">
+        <li>Year-round submissions</li>
+        <li>Optional themed campaigns</li>
+        <li>Quarterly evaluations & reflections</li>
+        <li>Annual celebration of achievements</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-4">Evaluation Pathways</h3>
+      <ul class="list-disc ml-6">
+        <li>Empowerment path: low-risk ideas executed immediately</li>
+        <li>Fast-track path for urgent/high-impact ideas</li>
+        <li>Quarterly Review Panels and shared wins tracking</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-2">Metrics & Governance</h2>
+      <ul class="list-disc ml-6">
+        <li>Idea volume and implementation rates</li>
+        <li>Cross-site participation and engagement</li>
+        <li>Submission-to-implementation time</li>
+        <li>Evaluation via CX Champions & cross-functional committees</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-2">Recognition & Activation</h2>
+      <ul class="list-disc ml-6">
+        <li>Shout-outs, prizes, and growth opportunities</li>
+        <li>Exec town halls, newsletters, posters, CX champions</li>
+        <li>Storytelling: idea of the month, wins/fails</li>
+      </ul>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-2">Submit Your Idea</h2>
+      <p class="mb-4">Have an idea to improve LifeSpace? Submit it through the Microsoft Form link below:</p>
+      <a href="https://forms.office.com/r/MBVtXjZTJt" target="_blank" class="inline-block bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700">Submit via Microsoft Forms</a>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t py-6 mt-10">
+    <div class="max-w-7xl mx-auto text-center text-sm text-gray-500">
+      © 2025 LifeSpace Communities. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
