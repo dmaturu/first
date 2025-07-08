@@ -231,11 +231,11 @@
             </ul>
         </section>
 
-      <section id="intake-form" class="intake-form-section">
+    <section id="intake-form" class="intake-form-section">
     <h2>Submit Your Idea</h2>
     <p>Use the form below to submit your micro-innovation. We appreciate every submission!</p>
     
-    <form id="ideaForm">
+    <form action="https://formspree.io/f/xyzjqewz" method="POST">
         <h3>Basic Information</h3>
         <div class="form-grid">
             <div class="form-group">
@@ -244,7 +244,7 @@
             </div>
             <div class="form-group">
                 <label for="submitterEmail">Your Email</label>
-                <input type="email" id="submitterEmail" name="submitterEmail" required>
+                <input type="email" id="submitterEmail" name="email" required>
             </div>
             <div class="form-group full-width">
                 <label for="ideaTitle">Title of the Idea (10-word limit)</label>
@@ -313,10 +313,8 @@
         </div>
 
         <div class="form-group full-width">
-            <button type="submit" id="submitButton">Submit Idea</button>
+            <button type="submit">Submit Idea</button>
         </div>
-        
-        <div id="formMessage" class="full-width"></div>
     </form>
 </section>
 
